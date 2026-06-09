@@ -6,6 +6,7 @@ import Experience     from './components/Experience'
 import Skills         from './components/Skills'
 import ProcessSection from './components/ProcessSection'
 import References     from './components/References'
+import TimeTracker    from './components/TimeTracker'
 import Footer         from './components/Footer'
 
 export default function App() {
@@ -20,6 +21,7 @@ export default function App() {
         <Skills />
         <ProcessSection />
         <References />
+        <TimeTracker />
         <Footer />
       </main>
     </div>

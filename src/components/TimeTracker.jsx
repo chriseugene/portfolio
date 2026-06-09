@@ -109,7 +109,7 @@ export default function TimeTracker() {
           whileInView={{ opacity: 1, scale: 1, x: 0 }}
           viewport={{ once: true, amount: 0 }}
           transition={{ delay: 0.65, type: 'spring', stiffness: 180, damping: 18 }}
-          style={{ marginBottom: '28px', maxWidth: '340px', position: 'relative', marginLeft: '-50px' }}
+          style={{ marginBottom: '28px', maxWidth: '340px', position: 'relative', marginLeft: '-100px' }}
         >
           <div style={{
             background: '#fff',

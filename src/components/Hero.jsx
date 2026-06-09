@@ -164,7 +164,7 @@ export default function Hero() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 1.0 }}
           >
-            grad student &amp; researcher 👋
+            m.s. ece graduate &amp; engineer 👋
           </motion.p>
 
           <motion.h1

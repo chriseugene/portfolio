@@ -88,7 +88,7 @@ export default function About() {
                     color: 'rgba(245,239,231,0.90)',
                     letterSpacing: '0.04em',
                   }}>
-                    available · may 2026
+                    m.s. ece graduate · may 2026
                   </span>
                 </div>
               </div>
@@ -128,8 +128,8 @@ export default function About() {
               fontSize: '15.5px', lineHeight: 1.78,
               color: '#544f47', marginBottom: '14px',
             }}>
-              I'm Chris Eugene — an M.S. Electrical & Computer Engineering student at
-              Saint Louis University (GPA 3.90). My core is in circuits, power systems,
+              I'm Chris Eugene — an M.S. Electrical & Computer Engineering graduate from
+              Saint Louis University (GPA 3.90, May 2026). My core is in circuits, power systems,
               and embedded hardware: I've studied power electronics, filter design,
               energy conversion, and digital systems, and I've applied that foundation
               in lab research fabricating MoS₂ photodetectors using CVD, AFM, and
@@ -196,11 +196,11 @@ export default function About() {
                   fontSize: '14px', color: '#544f47',
                   lineHeight: 1.65, margin: 0,
                 }}>
-                  Finishing M.S. thesis · Teaching Assistant at SLU ·
-                  Seeking full-time roles in{' '}
+                  M.S. ECE graduate (SLU, May 2026) · Former TA — College Physics & Energy Conversions ·
+                  Actively seeking roles in{' '}
                   <strong>power systems</strong>,{' '}
                   <strong>embedded & hardware engineering</strong>, or{' '}
-                  <strong>semiconductor R&amp;D</strong> — May 2026.
+                  <strong>semiconductor R&amp;D</strong>.
                 </p>
               </div>
             </motion.div>

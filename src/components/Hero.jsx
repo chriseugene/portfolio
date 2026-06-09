@@ -95,7 +95,7 @@ export default function Hero() {
           drag dragMomentum={false} dragElastic={0.08}
           whileDrag={{ scale: 1.05, zIndex: 20, cursor: 'grabbing' }}
           className="hidden xl:block"
-          style={{ position: 'absolute', right: 'clamp(20px, 5%, 60px)', top: '50%', marginTop: '-130px', zIndex: 4, cursor: 'grab' }}
+          style={{ position: 'absolute', right: 'clamp(20px, 5%, 60px)', top: '50%', marginTop: '-160px', zIndex: 4, cursor: 'grab' }}
           initial={{ opacity: 0, y: -180, rotate: 6 }}
           animate={{ opacity: 1, y: [0, -10, 0], rotate: 6 }}
           transition={{

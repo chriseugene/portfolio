@@ -49,7 +49,7 @@ export default function Hero() {
         <motion.div
           drag dragMomentum={false} dragElastic={0.08}
           whileDrag={{ scale: 1.05, zIndex: 20, cursor: 'grabbing' }}
-          className="hidden lg:block"
+          className="hidden lg:block widget-side"
           style={{ position: 'absolute', left: 'clamp(20px, 5.5%, 72px)', top: '50%', marginTop: '-160px', zIndex: 4, cursor: 'grab' }}
           initial={{ opacity: 0, y: -180, rotate: -5 }}
           animate={{ opacity: 1, y: [0, -8, 0], rotate: -5 }}
@@ -66,7 +66,7 @@ export default function Hero() {
         </motion.div>
 
         {/* ────── CENTER-TOP: Lanyard card drops from above ────── */}
-        <div className="hidden lg:block" style={{ position: 'absolute', top: '-24px', left: '50%', transform: 'translateX(-50%)', zIndex: 4 }}>
+        <div className="hidden md:block" style={{ position: 'absolute', top: '-24px', left: '50%', transform: 'translateX(-50%)', zIndex: 4 }}>
           <motion.div
             drag dragMomentum={false} dragElastic={0.06}
             whileDrag={{ scale: 1.04, zIndex: 20, cursor: 'grabbing' }}
@@ -212,7 +212,7 @@ export default function Hero() {
         <motion.div
           drag dragMomentum={false} dragElastic={0.08}
           whileDrag={{ scale: 1.05, zIndex: 20, cursor: 'grabbing' }}
-          className="hidden xl:block"
+          className="widget-datetime"
           style={{ position: 'absolute', bottom: '16%', right: 'clamp(20px, 7%, 90px)', zIndex: 4, cursor: 'grab' }}
           initial={{ opacity: 0, y: -160, rotate: 8 }}
           animate={{ opacity: 1, y: 0, rotate: 8 }}

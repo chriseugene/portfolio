@@ -95,6 +95,19 @@ main > * + * {
 .font-caveat   { font-family: 'Caveat', cursive; }
 .font-mono-ce  { font-family: 'JetBrains Mono', monospace; }
 
+/* ── Hero: floating widgets on mobile ── */
+.widget-datetime {
+  display: block;
+}
+@media (max-width: 767px) {
+  .widget-datetime {
+    transform: scale(0.72) rotate(8deg) !important;
+    transform-origin: bottom right;
+    bottom: 8% !important;
+    right: 8px !important;
+  }
+}
+
 /* ── WorkSection: Finder responsive layout ── */
 @media (max-width: 639px) {
   .finder-body {

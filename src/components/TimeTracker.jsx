@@ -88,7 +88,7 @@ export default function TimeTracker() {
   return (
     <div style={{ background: '#1a1510', paddingTop: '32px', position: 'relative' }}>
       <div style={{
-        padding: '0 24px 0 40px',
+        padding: '0 24px 0 0px',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'flex-start',

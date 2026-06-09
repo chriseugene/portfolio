@@ -583,7 +583,7 @@ function PendulumLanyard() {
       className="hidden md:block"
       style={{
         position: 'absolute',
-        top: '0px',
+        top: '70px',
         left: 'clamp(240px, 24%, 330px)',
         zIndex: 4,
         transformOrigin: 'top center',
@@ -592,7 +592,7 @@ function PendulumLanyard() {
       {/* Drop-in entry */}
       <motion.div
         initial={{ y: -650, opacity: 0 }}
-        animate={{ y: 70, opacity: 1 }}
+        animate={{ y: 0, opacity: 1 }}
         transition={{ type: 'spring', stiffness: 48, damping: 13, mass: 1.3, delay: 0.05 }}
         style={{ transformOrigin: 'top center' }}
       >

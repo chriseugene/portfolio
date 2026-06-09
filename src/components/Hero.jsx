@@ -396,10 +396,10 @@ function DateTimeWidget() {
 
   // Fetch visitor's city/country via IP geolocation (no permission needed)
   useEffect(() => {
-    fetch('https://ipwho.is/')
+    fetch('https://ipapi.co/json/')
       .then(r => r.json())
       .then(d => {
-        if (d.success) {
+        if (!d.error && d.city) {
           setYourLocation({ city: d.city, country: d.country_code })
         }
       })

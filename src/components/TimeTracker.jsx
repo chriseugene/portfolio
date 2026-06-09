@@ -90,10 +90,10 @@ export default function TimeTracker() {
       <div style={{
         maxWidth: '860px',
         margin: '0 auto',
-        padding: '0 24px',
+        padding: '0 24px 0 48px',
         display: 'flex',
         alignItems: 'center',
-        justifyContent: 'center',
+        justifyContent: 'flex-start',
         gap: '28px',
         flexWrap: 'wrap',
       }}>
@@ -102,7 +102,7 @@ export default function TimeTracker() {
         <img
           src="/patrick.png"
           alt="Patrick Star"
-          style={{ width: '260px', display: 'block', flexShrink: 0, filter: 'drop-shadow(2px 4px 12px rgba(0,0,0,0.5))' }}
+          style={{ width: '360px', display: 'block', flexShrink: 0, filter: 'drop-shadow(2px 4px 12px rgba(0,0,0,0.5))' }}
         />
 
         {/* Speech bubble */}

@@ -393,7 +393,8 @@ function DateTimeWidget() {
     return () => clearInterval(id)
   }, [])
 
-  const timeStr = now.toLocaleTimeString('en-US', {
+  // My time — St. Louis
+  const myTimeStr = now.toLocaleTimeString('en-US', {
     hour: '2-digit', minute: '2-digit', second: '2-digit',
     hour12: true, timeZone: 'America/Chicago',
   })
@@ -403,18 +404,24 @@ function DateTimeWidget() {
   })
   const tzAbbr = now
     .toLocaleTimeString('en-US', { timeZoneName: 'short', timeZone: 'America/Chicago' })
-    .split(' ')
-    .pop()  // "CST" or "CDT"
+    .split(' ').pop()
 
-  // Build the H:M:S parts — timeStr is e.g. "09:30:45 AM"
-  const timeParts = timeStr.split(':')           // ['09','30','45 AM']
-  const h = timeParts[0]
-  const m = timeParts[1]
-  const [s, ampm] = (timeParts[2] ?? '').split(' ')
+  const myParts = myTimeStr.split(':')
+  const h = myParts[0], m = myParts[1]
+  const [s, ampm] = (myParts[2] ?? '').split(' ')
+
+  // Visitor's local time
+  const yourTimeStr = now.toLocaleTimeString('en-US', {
+    hour: '2-digit', minute: '2-digit', hour12: true,
+  })
+  const yourTzAbbr = now
+    .toLocaleTimeString('en-US', { timeZoneName: 'short' })
+    .split(' ').pop()
+  const sameZone = tzAbbr === yourTzAbbr
 
   return (
     <div style={{
-      width: '178px',
+      width: '192px',
       borderRadius: '18px',
       overflow: 'hidden',
       boxShadow: '16px 16px 40px rgba(84,79,71,0.18)',
@@ -431,43 +438,53 @@ function DateTimeWidget() {
 
       {/* Clock body */}
       <div style={{ padding: '14px 16px 16px' }}>
-        {/* Big time display */}
-        <div style={{ display: 'flex', alignItems: 'baseline', gap: '2px', justifyContent: 'center', marginBottom: '4px' }}>
-          <span style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '30px', fontWeight: 700, color: '#f5efe7', lineHeight: 1, letterSpacing: '-0.02em' }}>
-            {h}
-          </span>
-          <span style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '30px', fontWeight: 700, color: '#e75d0b', lineHeight: 1 }}>:</span>
-          <span style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '30px', fontWeight: 700, color: '#f5efe7', lineHeight: 1 }}>
-            {m}
-          </span>
-          <span style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '30px', fontWeight: 700, color: '#e75d0b', lineHeight: 1 }}>:</span>
-          <span style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '22px', fontWeight: 500, color: 'rgba(245,239,231,0.55)', lineHeight: 1, alignSelf: 'center' }}>
-            {s}
-          </span>
-          <span style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '11px', fontWeight: 600, color: '#e75d0b', marginLeft: '3px', alignSelf: 'center' }}>
-            {ampm}
-          </span>
-        </div>
 
-        {/* Date row */}
-        <p style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '10px', color: 'rgba(245,239,231,0.45)', textAlign: 'center', margin: '0 0 10px', letterSpacing: '0.04em' }}>
-          {dateStr}
+        {/* MY TIME label */}
+        <p style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '8px', color: '#e75d0b', letterSpacing: '0.12em', textTransform: 'uppercase', marginBottom: '5px', opacity: 0.8 }}>
+          my time 📍
         </p>
 
-        {/* Divider */}
-        <div style={{ height: '1px', background: 'rgba(255,255,255,0.07)', marginBottom: '10px' }} />
+        {/* Big time display */}
+        <div style={{ display: 'flex', alignItems: 'baseline', gap: '2px', justifyContent: 'center', marginBottom: '4px' }}>
+          <span style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '30px', fontWeight: 700, color: '#f5efe7', lineHeight: 1, letterSpacing: '-0.02em' }}>{h}</span>
+          <span style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '30px', fontWeight: 700, color: '#e75d0b', lineHeight: 1 }}>:</span>
+          <span style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '30px', fontWeight: 700, color: '#f5efe7', lineHeight: 1 }}>{m}</span>
+          <span style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '30px', fontWeight: 700, color: '#e75d0b', lineHeight: 1 }}>:</span>
+          <span style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '22px', fontWeight: 500, color: 'rgba(245,239,231,0.55)', lineHeight: 1, alignSelf: 'center' }}>{s}</span>
+          <span style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '11px', fontWeight: 600, color: '#e75d0b', marginLeft: '3px', alignSelf: 'center' }}>{ampm}</span>
+        </div>
 
-        {/* Timezone + live indicator */}
-        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
-            <span style={{ fontSize: '11px' }}>📍</span>
-            <span style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '9px', color: 'rgba(245,239,231,0.35)', letterSpacing: '0.06em' }}>St. Louis, MO</span>
-          </div>
+        {/* Date + tz row */}
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '10px' }}>
+          <span style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '9px', color: 'rgba(245,239,231,0.35)', letterSpacing: '0.03em' }}>St. Louis, MO</span>
           <div style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>
             <span style={{ width: '6px', height: '6px', borderRadius: '50%', background: '#28c840', display: 'block', boxShadow: '0 0 5px #28c840' }} className="pulse-dot" />
             <span style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '9px', color: '#28c840', fontWeight: 600 }}>{tzAbbr}</span>
           </div>
         </div>
+
+        {/* Divider */}
+        <div style={{ height: '1px', background: 'rgba(255,255,255,0.07)', marginBottom: '10px' }} />
+
+        {/* YOUR TIME label */}
+        <p style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '8px', color: '#517d64', letterSpacing: '0.12em', textTransform: 'uppercase', marginBottom: '6px', opacity: 0.8 }}>
+          your time 🌍
+        </p>
+
+        {sameZone ? (
+          <p style={{ fontFamily: "'Architects Daughter', cursive", fontSize: '11px', color: 'rgba(245,239,231,0.4)', lineHeight: 1.4 }}>
+            Same timezone as me! 👋
+          </p>
+        ) : (
+          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+            <span style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '18px', fontWeight: 700, color: '#f5efe7', letterSpacing: '-0.01em' }}>
+              {yourTimeStr}
+            </span>
+            <span style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '9px', color: '#517d64', fontWeight: 600, background: 'rgba(81,125,100,0.15)', padding: '2px 6px', borderRadius: '6px' }}>
+              {yourTzAbbr}
+            </span>
+          </div>
+        )}
       </div>
     </div>
   )

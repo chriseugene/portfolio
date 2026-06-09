@@ -11,10 +11,10 @@ const stagger = {
 }
 
 const highlights = [
-  { icon: '🎓', label: 'GPA 3.90',           sub: 'M.S. ECE · SLU'        },
-  { icon: '⚡', label: 'Power Systems',       sub: 'Analysis & Electronics' },
-  { icon: '🔧', label: 'Hardware & Embedded', sub: 'Circuits · FPGA · PCB'  },
-  { icon: '📍', label: 'St. Louis, MO',       sub: 'Open to relocation'     },
+  { icon: '🎓', label: 'GPA 3.90',     sub: 'M.S. ECE · SLU'              },
+  { icon: '📚', label: '2× Teaching Assistant', sub: 'Physics & Energy Conversions · SLU' },
+  { icon: '💼', label: '4+ Roles',     sub: 'Research · Industry · Academia' },
+  { icon: '📍', label: 'St. Louis, MO', sub: 'Open to relocation'           },
 ]
 
 

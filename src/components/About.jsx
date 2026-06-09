@@ -11,10 +11,10 @@ const stagger = {
 }
 
 const highlights = [
-  { icon: '🎓', label: 'GPA 3.90',        sub: 'M.S. ECE · SLU'     },
-  { icon: '📍', label: 'St. Louis, MO',    sub: 'Open to relocation' },
-  { icon: '🏆', label: 'Manahan Scholar',  sub: 'SSE Research Fund'  },
-  { icon: '🔬', label: 'Researcher',       sub: 'Nanofab & ML Lab'   },
+  { icon: '🎓', label: 'GPA 3.90',          sub: 'M.S. ECE · SLU'       },
+  { icon: '⚡', label: 'Power Systems',      sub: 'Analysis & Electronics' },
+  { icon: '🏆', label: 'Manahan Scholar',    sub: 'SSE Research Fund'     },
+  { icon: '🔧', label: 'Hardware & Embedded', sub: 'Circuits · FPGA · PCB' },
 ]
 
 
@@ -119,8 +119,8 @@ export default function About() {
               letterSpacing: '-0.02em',
               marginBottom: '22px',
             }}>
-              Engineer by training,<br />
-              <span style={{ color: '#e75d0b', fontStyle: 'italic' }}>builder</span> by nature.
+              Hardware first,<br />
+              <span style={{ color: '#e75d0b', fontStyle: 'italic' }}>systems thinker</span> always.
             </motion.h2>
 
             {/* Bio paragraphs */}
@@ -129,20 +129,21 @@ export default function About() {
               color: '#544f47', marginBottom: '14px',
             }}>
               I'm Chris Eugene — an M.S. Electrical & Computer Engineering student at
-              Saint Louis University (GPA 3.90), working at the intersection of hardware,
-              machine learning, and nanomaterials. My research focuses on 2D material
-              devices: building MoS₂ photodetectors and characterizing thin films using
-              CVD, AFM, and Raman spectroscopy.
+              Saint Louis University (GPA 3.90). My core is in circuits, power systems,
+              and embedded hardware: I've studied power electronics, filter design,
+              energy conversion, and digital systems, and I've applied that foundation
+              in lab research fabricating MoS₂ photodetectors using CVD, AFM, and
+              Raman spectroscopy.
             </motion.p>
 
             <motion.p variants={fadeUp} style={{
               fontSize: '15.5px', lineHeight: 1.78,
               color: '#544f47', marginBottom: '30px',
             }}>
-              Outside the lab I architect AI pipelines with LangChain and OpenAI, design
-              power systems, and build full-stack tools that connect research with
-              real-world impact. I believe the best engineers don't just solve
-              problems — they ask better questions.
+              I write firmware, design PCB-level circuits, analyse power grids, and
+              build the software layer that makes hardware useful — whether that's
+              signal processing, real-time control, or optical communication systems.
+              I believe good engineering starts at the physics and works outward.
             </motion.p>
 
             {/* Highlight chips */}
@@ -197,9 +198,9 @@ export default function About() {
                 }}>
                   Finishing M.S. thesis · Teaching Assistant at SLU ·
                   Seeking full-time roles in{' '}
-                  <strong>AI/ML engineering</strong>,{' '}
-                  <strong>embedded systems</strong>, or{' '}
-                  <strong>R&amp;D</strong> — May 2026.
+                  <strong>power systems</strong>,{' '}
+                  <strong>embedded & hardware engineering</strong>, or{' '}
+                  <strong>semiconductor R&amp;D</strong> — May 2026.
                 </p>
               </div>
             </motion.div>

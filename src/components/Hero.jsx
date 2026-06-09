@@ -4,7 +4,7 @@
    Work-categories widget (right) · Stamp (bottom-left) ·
    Center heading + metrics · Company logo ticker
 ───────────────────────────────────────────────────────── */
-import { motion } from 'framer-motion'
+import { motion, useMotionValue, useTransform, useSpring } from 'framer-motion'
 import { useState, useEffect } from 'react'
 
 /* ── data ─────────────────────────────────────────────── */
@@ -65,19 +65,8 @@ export default function Hero() {
           </p>
         </motion.div>
 
-        {/* ────── LEFT: Lanyard card drops from above ────── */}
-        <div className="hidden md:block" style={{ position: 'absolute', top: '70px', left: 'clamp(240px, 24%, 330px)', zIndex: 4 }}>
-          <motion.div
-            drag dragMomentum={false} dragElastic={0.06}
-            whileDrag={{ scale: 1.04, zIndex: 20, cursor: 'grabbing' }}
-            style={{ cursor: 'grab' }}
-            initial={{ y: -650, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ type: 'spring', stiffness: 48, damping: 13, mass: 1.3, delay: 0.05 }}
-          >
-            <LanyardCard />
-          </motion.div>
-        </div>
+        {/* ────── LEFT: Lanyard card — pendulum swing ────── */}
+        <PendulumLanyard />
 
         {/* "That's me!" annotation */}
         <motion.p
@@ -584,6 +573,46 @@ function SineWave() {
 }
 
 /* ── Lanyard ID card ── */
+function PendulumLanyard() {
+  const x = useMotionValue(0)
+  const rotate = useTransform(x, [-180, 180], [-22, 22])
+  const smoothRotate = useSpring(rotate, { stiffness: 120, damping: 18 })
+
+  return (
+    <div
+      className="hidden md:block"
+      style={{
+        position: 'absolute',
+        top: '0px',
+        left: 'clamp(240px, 24%, 330px)',
+        zIndex: 4,
+        transformOrigin: 'top center',
+      }}
+    >
+      {/* Drop-in entry */}
+      <motion.div
+        initial={{ y: -650, opacity: 0 }}
+        animate={{ y: 70, opacity: 1 }}
+        transition={{ type: 'spring', stiffness: 48, damping: 13, mass: 1.3, delay: 0.05 }}
+        style={{ transformOrigin: 'top center' }}
+      >
+        {/* Pendulum pivot */}
+        <motion.div
+          drag="x"
+          dragConstraints={{ left: 0, right: 0 }}
+          dragElastic={0.35}
+          dragMomentum={true}
+          dragTransition={{ bounceStiffness: 90, bounceDamping: 10 }}
+          style={{ x, rotate: smoothRotate, transformOrigin: 'top center', cursor: 'grab' }}
+          whileDrag={{ cursor: 'grabbing' }}
+        >
+          <LanyardCard />
+        </motion.div>
+      </motion.div>
+    </div>
+  )
+}
+
 function LanyardCard() {
   return (
     <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>

@@ -263,7 +263,7 @@ export default function WorkSection() {
 
         <p style={{ textAlign: 'center', marginTop: '28px', fontSize: '13px', color: '#a89f95' }}>
           Want the full picture?{' '}
-          <a href="https://drive.google.com" target="_blank" rel="noreferrer"
+          <a href="/Chris_Eugene_Resume.pdf" download="Chris_Eugene_Resume.pdf"
             style={{ color: '#e75d0b', fontWeight: 700, textDecoration: 'none' }}
             onMouseEnter={e => e.currentTarget.style.opacity = '0.75'}
             onMouseLeave={e => e.currentTarget.style.opacity = '1'}

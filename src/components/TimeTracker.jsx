@@ -86,15 +86,13 @@ export default function TimeTracker() {
   const timeDisplay = mins > 0 ? `${mins}m ${secs}s` : `${seconds}s`
 
   return (
-    <div style={{ background: '#1a1510', paddingTop: '48px', position: 'relative' }}>
+    <div style={{ background: '#1a1510', paddingTop: '32px', position: 'relative' }}>
       <div style={{
-        maxWidth: '860px',
-        margin: '0 auto',
-        padding: '0 24px 0 48px',
+        padding: '0 24px 0 40px',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'flex-start',
-        gap: '28px',
+        gap: '20px',
         flexWrap: 'wrap',
       }}>
 

@@ -25,7 +25,7 @@ export default function Footer() {
   return (
     <footer
       id="contact"
-      style={{ background: '#1a1510', color: '#f5efe7', padding: '80px 24px 48px', position: 'relative', overflow: 'hidden' }}
+      style={{ background: '#1a1510', color: '#f5efe7', padding: '40px 24px 48px', position: 'relative', overflow: 'hidden' }}
     >
       {/* Subtle dot texture */}
       <div style={{

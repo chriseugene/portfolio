@@ -129,21 +129,19 @@ export default function About() {
               color: '#544f47', marginBottom: '14px',
             }}>
               I'm Chris Eugene — an M.S. Electrical & Computer Engineering graduate from
-              Saint Louis University (GPA 3.90, May 2026). My core is in circuits, power systems,
-              and embedded hardware: I've studied power electronics, filter design,
-              energy conversion, and digital systems, and I've applied that foundation
-              in lab research fabricating MoS₂ photodetectors using CVD, AFM, and
-              Raman spectroscopy.
+              Saint Louis University (GPA 3.90, May 2026). I'm an engineer who works
+              across the full stack of a system: from the physics of a device to the
+              circuits that drive it, and the software that ties everything together.
             </motion.p>
 
             <motion.p variants={fadeUp} style={{
               fontSize: '15.5px', lineHeight: 1.78,
               color: '#544f47', marginBottom: '30px',
             }}>
-              I write firmware, design PCB-level circuits, analyse power grids, and
-              build the software layer that makes hardware useful — whether that's
-              signal processing, real-time control, or optical communication systems.
-              I believe good engineering starts at the physics and works outward.
+              My experience spans research, hardware design, and systems engineering —
+              with a strong foundation in both the analytical and the hands-on. I like
+              problems that cross discipline boundaries, and I believe the best
+              solutions come from understanding a system end to end.
             </motion.p>
 
             {/* Highlight chips */}

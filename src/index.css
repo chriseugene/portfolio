@@ -1,0 +1,96 @@
+@import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Architects+Daughter&family=Bricolage+Grotesque:opsz,wght@10..40,300;10..40,400;10..40,500;10..40,600;10..40,700;10..40,800&family=Caveat:wght@400;500;600;700&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,600;1,9..144,400;1,9..144,500;1,9..144,700&family=JetBrains+Mono:wght@400;500;700&display=swap');
+
+@layer base {
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    background-color: #f5efe7;
+    /* subtle engineering graph-paper grid across every section */
+    background-image:
+      linear-gradient(rgba(84,79,71,0.035) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(84,79,71,0.035) 1px, transparent 1px),
+      linear-gradient(rgba(84,79,71,0.018) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(84,79,71,0.018) 1px, transparent 1px);
+    background-size: 100px 100px, 100px 100px, 20px 20px, 20px 20px;
+    color: #544f47;
+    font-family: 'Bricolage Grotesque', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+}
+
+/* ── Floating widget animations ── */
+@keyframes floatY {
+  0%, 100% { transform: translateY(0px); }
+  50%       { transform: translateY(-10px); }
+}
+@keyframes floatYRot {
+  0%, 100% { transform: translateY(0px) rotate(-5deg); }
+  50%       { transform: translateY(-8px) rotate(-5deg); }
+}
+@keyframes floatYDelay {
+  0%, 100% { transform: translateY(0px) rotate(3deg); }
+  50%       { transform: translateY(-12px) rotate(3deg); }
+}
+
+.float-widget        { animation: floatY      4s ease-in-out infinite; }
+.float-widget-rot    { animation: floatYRot   4.5s ease-in-out 0.3s infinite; }
+.float-widget-delay  { animation: floatYDelay 3.8s ease-in-out 0.8s infinite; }
+
+/* ── Pop-in entrance animations ── */
+@keyframes popIn {
+  from { opacity: 0; transform: scale(0.75) translateY(16px); }
+  to   { opacity: 1; transform: scale(1)    translateY(0);    }
+}
+.pop-in          { animation: popIn 0.55s cubic-bezier(0.34, 1.56, 0.64, 1) both; }
+.pop-in-delay-1  { animation: popIn 0.55s cubic-bezier(0.34, 1.56, 0.64, 1) 0.15s both; }
+.pop-in-delay-2  { animation: popIn 0.55s cubic-bezier(0.34, 1.56, 0.64, 1) 0.30s both; }
+.pop-in-delay-3  { animation: popIn 0.55s cubic-bezier(0.34, 1.56, 0.64, 1) 0.45s both; }
+.pop-in-delay-4  { animation: popIn 0.55s cubic-bezier(0.34, 1.56, 0.64, 1) 0.60s both; }
+
+/* ── Hero text entrance ── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(28px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.fade-up         { animation: fadeUp 0.7s cubic-bezier(0.22, 1, 0.36, 1) both; }
+.fade-up-delay-1 { animation: fadeUp 0.7s cubic-bezier(0.22, 1, 0.36, 1) 0.1s both; }
+.fade-up-delay-2 { animation: fadeUp 0.7s cubic-bezier(0.22, 1, 0.36, 1) 0.2s both; }
+.fade-up-delay-3 { animation: fadeUp 0.7s cubic-bezier(0.22, 1, 0.36, 1) 0.3s both; }
+.fade-up-delay-4 { animation: fadeUp 0.7s cubic-bezier(0.22, 1, 0.36, 1) 0.5s both; }
+
+/* ── Waving hand ── */
+@keyframes wavingHand {
+  0%, 60%, 100% { transform: rotate(0deg);  transform-origin: 70% 70%; }
+  10%           { transform: rotate(20deg); transform-origin: 70% 70%; }
+  20%           { transform: rotate(-8deg); transform-origin: 70% 70%; }
+  30%           { transform: rotate(20deg); transform-origin: 70% 70%; }
+  40%           { transform: rotate(-4deg); transform-origin: 70% 70%; }
+}
+.waving-hand { display: inline-block; animation: wavingHand 2.5s ease-in-out infinite; }
+
+/* ── Pulse dot ── */
+@keyframes pulseDot {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50%       { opacity: 0.6; transform: scale(1.4); }
+}
+.pulse-dot { animation: pulseDot 1.8s ease-in-out infinite; }
+
+/* ── Section scroll-reveal (CSS scroll-driven, no JS) ── */
+@keyframes sectionReveal {
+  from { opacity: 0; transform: translateY(50px); }
+  to   { opacity: 1; transform: translateY(0);    }
+}
+/* skip hero (first child) — it has its own framer-motion entrance */
+main > * + * {
+  animation: sectionReveal 0.75s cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation-timeline: view();
+  animation-range: entry 0% entry 22%;
+}
+
+/* ── Utility: handwritten font ── */
+.font-hand     { font-family: 'Architects Daughter', cursive; }
+.font-serif    { font-family: 'Fraunces', serif; }
+.font-caveat   { font-family: 'Caveat', cursive; }
+.font-mono-ce  { font-family: 'JetBrains Mono', monospace; }

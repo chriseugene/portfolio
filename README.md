@@ -1,16 +1,42 @@
-# React + Vite
+# eugenechris.com — Personal Portfolio
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Personal portfolio for **Chris Eugene**, M.S. Electrical & Computer Engineering at Saint Louis University (GPA 3.90).
 
-Currently, two official plugins are available:
+🔗 **Live:** [eugenechris.com](https://eugenechris.com)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+---
 
-## React Compiler
+## Stack
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- **React + Vite** — component-based UI
+- **Framer Motion** — animations and interactions
+- **Tailwind CSS v4** — utility classes
+- **Vercel** — deployment and hosting
 
-## Expanding the ESLint configuration
+## Sections
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+| Section | Description |
+|---|---|
+| Hero | Animated widgets, live clock, draggable lanyard card |
+| Work | macOS Finder-style project browser |
+| Education | SLU M.S. ECE + St. Joseph's B.S. EEE |
+| Experience | Accordion timeline with XYZ-format bullets |
+| Skills | 4-category accordion (ECE, Software/AI, Nanofab, Professional) |
+| Process | Notebook-style 4-step workflow cards |
+| Notes | Sticky-note reference cards |
+| Footer | Contact, links, animated name |
+
+## Run locally
+
+```bash
+npm install
+npm run dev
+```
+
+## Deploy
+
+Pushes to `master` auto-deploy via Vercel.
+
+```bash
+git add . && git commit -m "update" && git push
+```

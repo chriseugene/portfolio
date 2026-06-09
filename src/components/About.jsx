@@ -1,266 +1,212 @@
-import { useState, useRef, useEffect, useCallback } from 'react'
+import { motion } from 'framer-motion'
 
-const SLIDES = [
-  { type: 'stat',  value: '3.90', sub: '/ 4.0', label: 'Graduate GPA',   desc: 'Saint Louis University M.S. ECE', color: 'orange'  },
-  { type: 'stat',  value: '2',    sub: '',       label: 'Degrees Earned', desc: 'B.S. EEE + M.S. ECE',            color: 'blue'    },
-  { type: 'bio',   color: 'slate'   },
-  { type: 'research', color: 'purple' },
-  { type: 'stat',  value: '4+',   sub: '',       label: 'Roles Held',     desc: 'Academic · Industry · Research',  color: 'green'   },
-  { type: 'teaching', color: 'orange' },
-  { type: 'grad',  color: 'green'   },
-  { type: 'stat',  value: 'STL',  sub: '',       label: 'St. Louis, MO',  desc: 'Open to relocate',                color: 'blue'    },
+const fadeUp = {
+  hidden: { opacity: 0, y: 32 },
+  show:   { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] } },
+}
+
+const stagger = {
+  hidden: {},
+  show:   { transition: { staggerChildren: 0.12 } },
+}
+
+const highlights = [
+  { icon: '🎓', label: 'GPA 3.90',        sub: 'M.S. ECE · SLU'     },
+  { icon: '📍', label: 'St. Louis, MO',    sub: 'Open to relocation' },
+  { icon: '🏆', label: 'Manahan Scholar',  sub: 'SSE Research Fund'  },
+  { icon: '🔬', label: 'Researcher',       sub: 'Nanofab & ML Lab'   },
 ]
 
-const N            = SLIDES.length
-const AUTO_INTERVAL = 4000
-
-const borderMap = {
-  orange: 'border-[#e75d0b]/35',
-  blue:   'border-blue-400/35',
-  purple: 'border-purple-400/35',
-  green:  'border-[#517d64]/35',
-  slate:  'border-[#68635a]/25',
-}
-const valueColor = {
-  orange: '#e75d0b',
-  blue:   '#3b82f6',
-  purple: '#7c3aed',
-  green:  '#517d64',
-  slate:  '#544f47',
-}
-const dotBg = {
-  orange: 'bg-[#e75d0b]',
-  blue:   'bg-blue-400',
-  purple: 'bg-purple-400',
-  green:  'bg-[#517d64]',
-  slate:  'bg-[#68635a]',
-}
 
 export default function About() {
-  const [current, setCurrent] = useState({ idx: 0, key: 0, dir: 'none' })
-  const pointerStart = useRef(null)
-  const timerRef     = useRef(null)
-
-  const advance = useCallback((newIdx, dir) => {
-    setCurrent(c => ({ idx: (newIdx + N) % N, key: c.key + 1, dir }))
-  }, [])
-
-  const goNext = useCallback(() => {
-    setCurrent(c => ({ idx: (c.idx + 1) % N, key: c.key + 1, dir: 'left' }))
-  }, [])
-
-  const goPrev = useCallback(() => {
-    setCurrent(c => ({ idx: (c.idx - 1 + N) % N, key: c.key + 1, dir: 'right' }))
-  }, [])
-
-  function resetTimer() {
-    if (timerRef.current) clearInterval(timerRef.current)
-    timerRef.current = setInterval(goNext, AUTO_INTERVAL)
-  }
-
-  useEffect(() => {
-    resetTimer()
-    return () => clearInterval(timerRef.current)
-  }, [])
-
-  function onPointerDown(e) {
-    pointerStart.current = e.clientX ?? e.touches?.[0]?.clientX
-  }
-  function onPointerUp(e) {
-    if (pointerStart.current === null) return
-    const x  = e.clientX ?? e.changedTouches?.[0]?.clientX
-    const dx = x - pointerStart.current
-    if (Math.abs(dx) > 40) {
-      dx < 0 ? goNext() : goPrev()
-      resetTimer()
-    }
-    pointerStart.current = null
-  }
-
-  const slide     = SLIDES[current.idx]
-  const animClass = current.dir === 'left'  ? 'anim-from-right'
-                  : current.dir === 'right' ? 'anim-from-left'
-                  : ''
-
   return (
-    <section
-      id="about"
-      className="relative py-24 px-6 overflow-hidden min-h-[540px] flex flex-col justify-center"
-      style={{ background: '#faf6f1' }}
-    >
-      <div className="relative z-10 max-w-5xl mx-auto w-full">
-        <p
-          className="text-xs tracking-[0.3em] uppercase text-center mb-3 font-semibold"
-          style={{ color: '#e75d0b', fontFamily: "'Architects Daughter', cursive" }}
+    <section id="about" style={{ background: '#f5efe7', padding: '100px 24px' }}>
+      <div style={{ maxWidth: '1100px', margin: '0 auto' }}>
+        <motion.div
+          variants={stagger}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true, amount: 0.15 }}
+          style={{
+            display: 'flex',
+            alignItems: 'center',
+            gap: 'clamp(40px, 6vw, 80px)',
+            flexWrap: 'wrap',
+          }}
         >
-          About
-        </p>
-        <h2
-          className="text-3xl md:text-4xl font-bold mb-10 text-center"
-          style={{ color: '#544f47' }}
-        >
-          Who I Am
-        </h2>
+          {/* ── Photo column ── */}
+          <motion.div variants={fadeUp} style={{ flex: '0 0 auto', alignSelf: 'flex-start' }}>
+            <div style={{ position: 'relative', width: 'clamp(240px, 28vw, 340px)' }}>
+              {/* Orange offset shadow */}
+              <div style={{
+                position: 'absolute', inset: 0,
+                transform: 'translate(12px, 12px)',
+                borderRadius: '20px',
+                background: '#e75d0b',
+                opacity: 0.20,
+              }} />
+              {/* Dark border accent */}
+              <div style={{
+                position: 'absolute', inset: 0,
+                transform: 'translate(6px, 6px)',
+                borderRadius: '20px',
+                border: '2px solid #544f47',
+                opacity: 0.10,
+              }} />
+              {/* Photo card */}
+              <div style={{
+                position: 'relative',
+                borderRadius: '20px',
+                overflow: 'hidden',
+                boxShadow: '0 24px 60px rgba(26,21,16,0.22)',
+                border: '1.5px solid rgba(84,79,71,0.10)',
+                aspectRatio: '3 / 4',
+              }}>
+                <img
+                  src="/about-photo.jpg"
+                  alt="Chris Eugene"
+                  style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center top', display: 'block' }}
+                />
+                {/* Gradient at bottom */}
+                <div style={{
+                  position: 'absolute', bottom: 0, left: 0, right: 0, height: '110px',
+                  background: 'linear-gradient(to top, rgba(26,21,16,0.60), transparent)',
+                }} />
+                {/* Available badge */}
+                <div style={{
+                  position: 'absolute', bottom: '16px', left: '16px',
+                  display: 'flex', alignItems: 'center', gap: '7px',
+                }}>
+                  <span style={{
+                    width: '7px', height: '7px', borderRadius: '50%',
+                    background: '#28c840', boxShadow: '0 0 6px #28c840',
+                    display: 'inline-block', flexShrink: 0,
+                  }} />
+                  <span style={{
+                    fontFamily: "'JetBrains Mono', monospace",
+                    fontSize: '10px', fontWeight: 600,
+                    color: 'rgba(245,239,231,0.90)',
+                    letterSpacing: '0.04em',
+                  }}>
+                    available · may 2026
+                  </span>
+                </div>
+              </div>
+            </div>
+          </motion.div>
 
-        <div
-          className="flex items-center justify-center gap-6 select-none"
-          onPointerDown={onPointerDown}
-          onPointerUp={onPointerUp}
-          onTouchStart={onPointerDown}
-          onTouchEnd={onPointerUp}
-        >
-          {/* Prev ghost */}
-          <div
-            className="hidden md:flex w-44 h-44 rounded-xl items-center justify-center opacity-30 scale-90 cursor-pointer shrink-0 border"
-            style={{ background: 'rgba(245,239,231,0.6)', borderColor: 'rgba(84,79,71,0.10)' }}
-            onClick={() => { goPrev(); resetTimer() }}
-          >
-            <GhostCard slide={SLIDES[(current.idx - 1 + N) % N]} />
-          </div>
+          {/* ── Text column ── */}
+          <motion.div variants={stagger} style={{ flex: '1 1 300px', minWidth: '260px' }}>
 
-          {/* Active card */}
-          <div
-            key={current.key}
-            className={`w-64 h-64 md:w-72 md:h-72 rounded-2xl border flex flex-col items-center justify-center p-6 cursor-grab active:cursor-grabbing shrink-0 ${borderMap[slide.color]} ${animClass}`}
-            style={{ background: '#ffffff', boxShadow: '0 8px 40px rgba(84,79,71,0.10)' }}
-          >
-            <SlideContent slide={slide} />
-          </div>
+            {/* Handwritten label */}
+            <motion.p variants={fadeUp} style={{
+              fontFamily: "'Architects Daughter', cursive",
+              fontSize: '16px', color: '#e75d0b',
+              marginBottom: '10px',
+              transform: 'rotate(-1deg)',
+              display: 'inline-block',
+            }}>
+              about me ✦
+            </motion.p>
 
-          {/* Next ghost */}
-          <div
-            className="hidden md:flex w-44 h-44 rounded-xl items-center justify-center opacity-30 scale-90 cursor-pointer shrink-0 border"
-            style={{ background: 'rgba(245,239,231,0.6)', borderColor: 'rgba(84,79,71,0.10)' }}
-            onClick={() => { goNext(); resetTimer() }}
-          >
-            <GhostCard slide={SLIDES[(current.idx + 1) % N]} />
-          </div>
-        </div>
+            {/* Headline */}
+            <motion.h2 variants={fadeUp} style={{
+              fontFamily: "'Bricolage Grotesque', sans-serif",
+              fontWeight: 900,
+              fontSize: 'clamp(26px, 4vw, 44px)',
+              color: '#1a1510',
+              lineHeight: 1.1,
+              letterSpacing: '-0.02em',
+              marginBottom: '22px',
+            }}>
+              Engineer by training,<br />
+              <span style={{ color: '#e75d0b', fontStyle: 'italic' }}>builder</span> by nature.
+            </motion.h2>
 
-        {/* Dots */}
-        <div className="flex justify-center gap-2 mt-8">
-          {SLIDES.map((s, i) => (
-            <button
-              key={i}
-              onClick={() => { advance(i, i > current.idx ? 'left' : 'right'); resetTimer() }}
-              className={`transition-all duration-300 rounded-full ${
-                i === current.idx
-                  ? `w-6 h-2 ${dotBg[s.color]}`
-                  : 'w-2 h-2 bg-[#d4cfc9] hover:bg-[#a89f95]'
-              }`}
-              aria-label={`Slide ${i + 1}`}
-            />
-          ))}
-        </div>
+            {/* Bio paragraphs */}
+            <motion.p variants={fadeUp} style={{
+              fontSize: '15.5px', lineHeight: 1.78,
+              color: '#544f47', marginBottom: '14px',
+            }}>
+              I'm Chris Eugene — an M.S. Electrical & Computer Engineering student at
+              Saint Louis University (GPA 3.90), working at the intersection of hardware,
+              machine learning, and nanomaterials. My research focuses on 2D material
+              devices: building MoS₂ photodetectors and characterizing thin films using
+              CVD, AFM, and Raman spectroscopy.
+            </motion.p>
 
-        <p className="text-center text-xs mt-3 tracking-widest" style={{ color: '#c4bfba' }}>
-          auto-advances · swipe or tap to navigate
-        </p>
+            <motion.p variants={fadeUp} style={{
+              fontSize: '15.5px', lineHeight: 1.78,
+              color: '#544f47', marginBottom: '30px',
+            }}>
+              Outside the lab I architect AI pipelines with LangChain and OpenAI, design
+              power systems, and build full-stack tools that connect research with
+              real-world impact. I believe the best engineers don't just solve
+              problems — they ask better questions.
+            </motion.p>
+
+            {/* Highlight chips */}
+            <motion.div variants={fadeUp} style={{
+              display: 'flex', flexWrap: 'wrap', gap: '10px', marginBottom: '28px',
+            }}>
+              {highlights.map(({ icon, label, sub }) => (
+                <div key={label} style={{
+                  display: 'flex', alignItems: 'center', gap: '10px',
+                  background: 'white',
+                  border: '1.5px solid rgba(84,79,71,0.10)',
+                  borderRadius: '14px',
+                  padding: '9px 14px',
+                  boxShadow: '0 2px 10px rgba(84,79,71,0.06)',
+                }}>
+                  <span style={{ fontSize: '16px' }}>{icon}</span>
+                  <div>
+                    <p style={{
+                      fontFamily: "'Bricolage Grotesque', sans-serif",
+                      fontWeight: 700, fontSize: '12px',
+                      color: '#1a1510', margin: 0, lineHeight: 1.2,
+                    }}>{label}</p>
+                    <p style={{
+                      fontFamily: "'JetBrains Mono', monospace",
+                      fontSize: '9.5px', color: '#a89f95',
+                      margin: 0, marginTop: '2px', letterSpacing: '0.03em',
+                    }}>{sub}</p>
+                  </div>
+                </div>
+              ))}
+            </motion.div>
+
+            {/* Currently block */}
+            <motion.div variants={fadeUp} style={{
+              background: 'rgba(231,93,11,0.06)',
+              border: '1.5px solid rgba(231,93,11,0.18)',
+              borderRadius: '14px',
+              padding: '14px 18px',
+              display: 'flex', alignItems: 'flex-start', gap: '12px',
+            }}>
+              <span style={{ fontSize: '18px', marginTop: '2px', flexShrink: 0 }}>⚡</span>
+              <div>
+                <p style={{
+                  fontFamily: "'JetBrains Mono', monospace",
+                  fontSize: '10px', fontWeight: 700,
+                  color: '#e75d0b', letterSpacing: '0.1em',
+                  textTransform: 'uppercase', margin: '0 0 5px',
+                }}>Currently</p>
+                <p style={{
+                  fontSize: '14px', color: '#544f47',
+                  lineHeight: 1.65, margin: 0,
+                }}>
+                  Finishing M.S. thesis · Teaching Assistant at SLU ·
+                  Seeking full-time roles in{' '}
+                  <strong>AI/ML engineering</strong>,{' '}
+                  <strong>embedded systems</strong>, or{' '}
+                  <strong>R&amp;D</strong> — May 2026.
+                </p>
+              </div>
+            </motion.div>
+
+          </motion.div>
+        </motion.div>
       </div>
     </section>
-  )
-}
-
-function SlideContent({ slide }) {
-  if (slide.type === 'bio') {
-    return (
-      <div className="text-center space-y-3">
-        <p className="text-xs tracking-[0.2em] uppercase font-semibold" style={{ color: '#e75d0b' }}>Summary</p>
-        <p className="text-xs leading-relaxed" style={{ color: '#68635a' }}>
-          M.S. ECE graduate specializing in{' '}
-          <span style={{ color: '#e75d0b', fontWeight: 600 }}>quantum engineering</span>,{' '}
-          <span style={{ color: '#3b82f6', fontWeight: 600 }}>nanomaterials</span>, and{' '}
-          <span style={{ color: '#7c3aed', fontWeight: 600 }}>deep learning</span>.
-        </p>
-        <p className="text-xs leading-relaxed" style={{ color: '#a89f95' }}>
-          Cross-functional experience across research, instruction, QA, and IT.
-        </p>
-        <a
-          href="#resume"
-          className="inline-flex items-center gap-1 text-xs mt-1 transition-colors hover:opacity-70"
-          style={{ color: '#e75d0b' }}
-        >
-          <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3" />
-          </svg>
-          View Resume
-        </a>
-      </div>
-    )
-  }
-
-  if (slide.type === 'research') {
-    return (
-      <div className="text-center space-y-3">
-        <p className="text-xs tracking-[0.2em] uppercase font-semibold" style={{ color: '#7c3aed' }}>Research Focus</p>
-        <div className="flex flex-col gap-2 mt-1">
-          {['Quantum Mechanics & QIS', 'Nanomaterial Fabrication', 'Deep Learning & CV', 'Energy Systems'].map(r => (
-            <span
-              key={r}
-              className="px-3 py-1 rounded-full text-xs"
-              style={{ background: 'rgba(139,92,246,0.08)', color: '#7c3aed', border: '1px solid rgba(139,92,246,0.20)' }}
-            >
-              {r}
-            </span>
-          ))}
-        </div>
-      </div>
-    )
-  }
-
-  if (slide.type === 'teaching') {
-    return (
-      <div className="text-center space-y-2">
-        <p className="text-xs tracking-[0.2em] uppercase font-semibold" style={{ color: '#e75d0b' }}>Teaching</p>
-        <p className="text-sm font-bold mt-1" style={{ color: '#544f47' }}>2× TA at SLU</p>
-        <p className="text-xs" style={{ color: '#68635a' }}>College Physics</p>
-        <p className="text-xs" style={{ color: '#68635a' }}>Energy Conversions</p>
-        <p className="text-xs mt-2" style={{ color: '#a89f95' }}>Aug 2025 – May 2026</p>
-      </div>
-    )
-  }
-
-  if (slide.type === 'grad') {
-    return (
-      <div className="text-center space-y-2">
-        <p className="text-xs tracking-[0.2em] uppercase font-semibold" style={{ color: '#517d64' }}>Status</p>
-        <p className="text-2xl font-bold" style={{ color: '#544f47' }}>May 2026</p>
-        <p className="text-xs" style={{ color: '#68635a' }}>M.S. ECE Graduate</p>
-        <p className="text-xs mt-2 leading-relaxed" style={{ color: '#a89f95' }}>
-          Seeking engineering, research &amp; teaching roles
-        </p>
-        <span
-          className="inline-block mt-1 px-3 py-1 rounded-full text-xs font-semibold"
-          style={{ background: 'rgba(81,125,100,0.10)', border: '1px solid rgba(81,125,100,0.25)', color: '#517d64' }}
-        >
-          Open to Opportunities
-        </span>
-      </div>
-    )
-  }
-
-  // stat
-  return (
-    <div className="text-center space-y-2">
-      <div className="text-5xl md:text-6xl font-bold leading-none" style={{ color: valueColor[slide.color] }}>
-        {slide.value}
-        {slide.sub && <span className="text-2xl ml-1" style={{ color: '#c4bfba' }}>{slide.sub}</span>}
-      </div>
-      <div className="font-bold text-sm tracking-wider mt-3" style={{ color: '#544f47' }}>{slide.label}</div>
-      <div className="text-xs leading-relaxed max-w-[180px]" style={{ color: '#a89f95' }}>{slide.desc}</div>
-    </div>
-  )
-}
-
-function GhostCard({ slide }) {
-  if (slide.type === 'bio')      return <span className="text-xs" style={{ color: '#c4bfba' }}>Bio</span>
-  if (slide.type === 'research') return <span className="text-xs" style={{ color: '#c4bfba' }}>Research</span>
-  if (slide.type === 'teaching') return <span className="text-xs" style={{ color: '#c4bfba' }}>Teaching</span>
-  if (slide.type === 'grad')     return <span className="text-xs" style={{ color: '#c4bfba' }}>May 2026</span>
-  return (
-    <div className="text-center">
-      <div className="text-xl font-bold opacity-50" style={{ color: valueColor[slide.color] }}>{slide.value}</div>
-      <div className="text-xs mt-1" style={{ color: '#c4bfba' }}>{slide.label}</div>
-    </div>
   )
 }

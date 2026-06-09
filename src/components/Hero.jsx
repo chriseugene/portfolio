@@ -65,8 +65,8 @@ export default function Hero() {
           </p>
         </motion.div>
 
-        {/* ────── CENTER-TOP: Lanyard card drops from above ────── */}
-        <div className="hidden md:block" style={{ position: 'absolute', top: '-24px', left: '50%', transform: 'translateX(-50%)', zIndex: 4 }}>
+        {/* ────── LEFT: Lanyard card drops from above ────── */}
+        <div className="hidden md:block" style={{ position: 'absolute', top: '-24px', left: 'clamp(160px, 20%, 260px)', zIndex: 4 }}>
           <motion.div
             drag dragMomentum={false} dragElastic={0.06}
             whileDrag={{ scale: 1.04, zIndex: 20, cursor: 'grabbing' }}
@@ -82,7 +82,7 @@ export default function Hero() {
         {/* "That's me!" annotation */}
         <motion.p
           className="hidden xl:block"
-          style={{ position: 'absolute', right: 'calc(50% - 18px)', top: 'calc(50% - 200px)', fontFamily: "'Architects Daughter', cursive", color: '#b0a99e', fontSize: '13px', transform: 'rotate(-6deg)', pointerEvents: 'none', userSelect: 'none', zIndex: 3 }}
+          style={{ position: 'absolute', left: 'clamp(270px, 29%, 370px)', top: 'calc(50% - 200px)', fontFamily: "'Architects Daughter', cursive", color: '#b0a99e', fontSize: '13px', transform: 'rotate(-6deg)', pointerEvents: 'none', userSelect: 'none', zIndex: 3 }}
           initial={{ opacity: 0, y: 8 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 1.1 }}

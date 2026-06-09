@@ -174,34 +174,6 @@ export default function About() {
               ))}
             </motion.div>
 
-            {/* Currently block */}
-            <motion.div variants={fadeUp} style={{
-              background: 'rgba(231,93,11,0.06)',
-              border: '1.5px solid rgba(231,93,11,0.18)',
-              borderRadius: '14px',
-              padding: '14px 18px',
-              display: 'flex', alignItems: 'flex-start', gap: '12px',
-            }}>
-              <span style={{ fontSize: '18px', marginTop: '2px', flexShrink: 0 }}>⚡</span>
-              <div>
-                <p style={{
-                  fontFamily: "'JetBrains Mono', monospace",
-                  fontSize: '10px', fontWeight: 700,
-                  color: '#e75d0b', letterSpacing: '0.1em',
-                  textTransform: 'uppercase', margin: '0 0 5px',
-                }}>Currently</p>
-                <p style={{
-                  fontSize: '14px', color: '#544f47',
-                  lineHeight: 1.65, margin: 0,
-                }}>
-                  M.S. ECE graduate (SLU, May 2026) · Former TA — College Physics & Energy Conversions ·
-                  Actively seeking roles in{' '}
-                  <strong>power systems</strong>,{' '}
-                  <strong>embedded & hardware engineering</strong>, or{' '}
-                  <strong>semiconductor R&amp;D</strong>.
-                </p>
-              </div>
-            </motion.div>
 
           </motion.div>
         </motion.div>

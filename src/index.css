@@ -94,3 +94,39 @@ main > * + * {
 .font-serif    { font-family: 'Fraunces', serif; }
 .font-caveat   { font-family: 'Caveat', cursive; }
 .font-mono-ce  { font-family: 'JetBrains Mono', monospace; }
+
+/* ── WorkSection: Finder responsive layout ── */
+@media (max-width: 639px) {
+  .finder-body {
+    flex-direction: column !important;
+  }
+  .finder-sidebar {
+    width: 100% !important;
+    border-right: none !important;
+    border-bottom: 1.5px solid rgba(84,79,71,0.10) !important;
+    padding: 12px 12px 8px !important;
+    display: flex !important;
+    flex-wrap: wrap !important;
+    gap: 6px !important;
+    align-items: center !important;
+  }
+  /* Hide the "Favourites" / "Explore" labels on mobile */
+  .finder-sidebar > p {
+    display: none !important;
+  }
+  /* Category buttons become inline chips */
+  .finder-sidebar > button {
+    width: auto !important;
+    margin-bottom: 0 !important;
+    padding: 5px 12px !important;
+    border-radius: 20px !important;
+    font-size: 12px !important;
+  }
+  /* GitHub link stays inline */
+  .finder-sidebar > a {
+    padding: 5px 12px !important;
+    font-size: 12px !important;
+    border: 1px solid rgba(84,79,71,0.15) !important;
+    border-radius: 20px !important;
+  }
+}

@@ -114,10 +114,10 @@ export default function WorkSection() {
           </div>
 
           {/* Finder body */}
-          <div style={{ display: 'flex', minHeight: '420px', background: '#faf6f1' }}>
+          <div className="finder-body" style={{ display: 'flex', minHeight: '420px', background: '#faf6f1' }}>
 
             {/* Sidebar */}
-            <div style={{ width: '176px', borderRight: '1.5px solid rgba(84,79,71,0.10)', padding: '16px 12px', background: '#f5efe7', flexShrink: 0 }}>
+            <div className="finder-sidebar" style={{ width: '176px', borderRight: '1.5px solid rgba(84,79,71,0.10)', padding: '16px 12px', background: '#f5efe7', flexShrink: 0 }}>
               <p style={{ fontSize: '10px', color: '#c4bfba', textTransform: 'uppercase', letterSpacing: '0.15em', fontWeight: 700, marginBottom: '8px', paddingLeft: '8px' }}>
                 Favourites
               </p>

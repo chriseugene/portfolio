@@ -1,3 +1,4 @@
+import { Analytics } from '@vercel/analytics/react'
 import Navbar         from './components/Navbar'
 import Hero           from './components/Hero'
 import WorkSection    from './components/WorkSection'
@@ -24,6 +25,7 @@ export default function App() {
         <TimeTracker />
         <Footer />
       </main>
+      <Analytics />
     </div>
   )
 }

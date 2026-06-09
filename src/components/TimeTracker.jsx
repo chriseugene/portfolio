@@ -92,25 +92,18 @@ export default function TimeTracker() {
         margin: '0 auto',
         padding: '0 24px',
         display: 'flex',
-        alignItems: 'flex-end',
+        alignItems: 'center',
         justifyContent: 'center',
         gap: '28px',
+        flexWrap: 'wrap',
       }}>
 
-        {/* Patrick — slides in from left */}
-        <motion.div
-          initial={{ opacity: 0, x: -60 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true, amount: 0 }}
-          transition={{ type: 'spring', stiffness: 60, damping: 14, delay: 0.15 }}
-          style={{ flexShrink: 0 }}
-        >
-          <img
-            src="/patrick.png"
-            alt="Patrick Star"
-            style={{ width: '160px', display: 'block', filter: 'drop-shadow(2px 4px 10px rgba(0,0,0,0.4))' }}
-          />
-        </motion.div>
+        {/* Patrick */}
+        <img
+          src="/patrick.png"
+          alt="Patrick Star"
+          style={{ width: '260px', display: 'block', flexShrink: 0, filter: 'drop-shadow(2px 4px 12px rgba(0,0,0,0.5))' }}
+        />
 
         {/* Speech bubble */}
         <motion.div

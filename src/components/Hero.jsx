@@ -603,12 +603,12 @@ function LanyardCard() {
         </div>
 
         {/* avatar */}
-        <div style={{ width: '100%', borderRadius: '8px', overflow: 'hidden', background: '#f5efe7', aspectRatio: '1 / 1.1' }}>
+        <div style={{ width: '100%', borderRadius: '8px', overflow: 'hidden', background: '#f5efe7', aspectRatio: '3 / 4' }}>
           <img
-            src="/avatar.png"
+            src="/avatar.jpg"
             alt="Chris Eugene"
             className="avatar-wave"
-            style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
+            style={{ width: '100%', height: '100%', objectFit: 'contain', objectPosition: 'center bottom', display: 'block' }}
           />
         </div>
 

@@ -66,7 +66,7 @@ export default function Hero() {
         </motion.div>
 
         {/* ────── LEFT: Lanyard card drops from above ────── */}
-        <div className="hidden md:block" style={{ position: 'absolute', top: '70px', left: 'clamp(220px, 22%, 310px)', zIndex: 4 }}>
+        <div className="hidden md:block" style={{ position: 'absolute', top: '70px', left: 'clamp(240px, 24%, 330px)', zIndex: 4 }}>
           <motion.div
             drag dragMomentum={false} dragElastic={0.06}
             whileDrag={{ scale: 1.04, zIndex: 20, cursor: 'grabbing' }}

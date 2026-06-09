@@ -387,10 +387,23 @@ function EceSchematic() {
 /* ── Live date & time clock widget ── */
 function DateTimeWidget() {
   const [now, setNow] = useState(new Date())
+  const [yourLocation, setYourLocation] = useState(null)
 
   useEffect(() => {
     const id = setInterval(() => setNow(new Date()), 1000)
     return () => clearInterval(id)
+  }, [])
+
+  // Fetch visitor's city/country via IP geolocation (no permission needed)
+  useEffect(() => {
+    fetch('https://ipwho.is/')
+      .then(r => r.json())
+      .then(d => {
+        if (d.success) {
+          setYourLocation({ city: d.city, country: d.country_code })
+        }
+      })
+      .catch(() => {})
   }, [])
 
   // My time — St. Louis
@@ -472,18 +485,32 @@ function DateTimeWidget() {
         </p>
 
         {sameZone ? (
-          <p style={{ fontFamily: "'Architects Daughter', cursive", fontSize: '11px', color: 'rgba(245,239,231,0.4)', lineHeight: 1.4 }}>
-            Same timezone as me! 👋
-          </p>
+          <>
+            <p style={{ fontFamily: "'Architects Daughter', cursive", fontSize: '11px', color: 'rgba(245,239,231,0.4)', lineHeight: 1.4 }}>
+              Same timezone as me! 👋
+            </p>
+            {yourLocation && (
+              <p style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '9px', color: 'rgba(245,239,231,0.28)', marginTop: '4px', letterSpacing: '0.03em' }}>
+                📍 {yourLocation.city}, {yourLocation.country}
+              </p>
+            )}
+          </>
         ) : (
-          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-            <span style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '18px', fontWeight: 700, color: '#f5efe7', letterSpacing: '-0.01em' }}>
-              {yourTimeStr}
-            </span>
-            <span style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '9px', color: '#517d64', fontWeight: 600, background: 'rgba(81,125,100,0.15)', padding: '2px 6px', borderRadius: '6px' }}>
-              {yourTzAbbr}
-            </span>
-          </div>
+          <>
+            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '4px' }}>
+              <span style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '18px', fontWeight: 700, color: '#f5efe7', letterSpacing: '-0.01em' }}>
+                {yourTimeStr}
+              </span>
+              <span style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '9px', color: '#517d64', fontWeight: 600, background: 'rgba(81,125,100,0.15)', padding: '2px 6px', borderRadius: '6px' }}>
+                {yourTzAbbr}
+              </span>
+            </div>
+            {yourLocation && (
+              <p style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '9px', color: 'rgba(245,239,231,0.28)', letterSpacing: '0.03em' }}>
+                📍 {yourLocation.city}, {yourLocation.country}
+              </p>
+            )}
+          </>
         )}
       </div>
     </div>
